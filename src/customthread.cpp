@@ -2,7 +2,7 @@ CustomThread::CustomThread(std::string fileName) {
 
 }
 
-CustomThread::CustomThread(const &CustomThread) {
+CustomThread::CustomThread(const CustomThread&) {
 
 }
 
