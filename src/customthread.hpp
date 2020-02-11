@@ -1,10 +1,12 @@
 #include <vector>
 #include <iostream>
 #include <pthread.h>
+#include <fstream>
+#include <string>
 
 class CustomThread {
 private:///members
-    std::ostream file;
+    std::fstream file;
     pthread_t thread;
 public:///constructors and destructor
     CustomThread(std::string fileName);

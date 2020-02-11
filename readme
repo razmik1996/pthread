@@ -7,4 +7,4 @@ Example firefox doc/html/index.html
 You can run program after compiling just type make
 for other commands
 type make help
-After compiling you can run program from bin/ (bin/dynamicArray)
+After compiling you can run program from bin/ (bin/threads)

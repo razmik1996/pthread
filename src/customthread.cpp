@@ -1,23 +1,28 @@
-CustomerThread::CustomThread(std::string fileName) {
+CustomThread::CustomThread(std::string fileName) {
+i
+}
+
+CustomThread::CustomThread(const &CustomThread) {
 
 }
 
-CustomerThread::CustomThread(const &CustomThread) {
+CustomThread::~CustomThread() {
 
 }
 
-CustomerThread::~CustomThread() {
+void* CustomThread::readFile(void * filename) {
+    std::string s = (std::string)filename;
+    file.open(s);
+    if(!file.is_open()) {
+        file(s); 
+    }
+    
+}
+
+void* CustomThread::writeFile(void *) {
 
 }
 
-void* CustomerThread::readFile(void *) {
-
-}
-
-void* CustomerThread::writeFile(void *) {
-
-}
-
-void* CustomerThread::find(void *) {
+void* CustomThread::find(void *) {
 
 }
