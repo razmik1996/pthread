@@ -1,5 +1,5 @@
 CustomThread::CustomThread(std::string fileName) {
-i
+
 }
 
 CustomThread::CustomThread(const &CustomThread) {
@@ -11,16 +11,19 @@ CustomThread::~CustomThread() {
 }
 
 void* CustomThread::readFile(void * filename) {
-    std::string s = (std::string)filename;
+    char* s = (char*)filename;
     file.open(s);
     if(!file.is_open()) {
-        file(s); 
+        ifstream file(s); 
     }
-    
 }
 
-void* CustomThread::writeFile(void *) {
-
+void* CustomThread::writeFile(void * filename)
+{
+	char* s = (char*)filename;
+	for (int i = 0; i < 100; ++i) {
+		file << i << " ";
+	}
 }
 
 void* CustomThread::find(void *) {
