@@ -13,7 +13,7 @@ doc: src/*.hpp
 	@doxygen ./doc/documentation
 
 bin/program: ./bin lib/libStat.a src/main.cpp $(HEADERS)
-	@g++ -std=c++14 -pthread src/main.cpp -L lib -l Stat -o bin/$(PROGNAME) -I /inc
+	@g++ -std=c++14 -lpthread src/main.cpp -L lib -l Stat -o bin/$(PROGNAME) -I /inc
 	@echo "Succesfully..."
 inc/%.hpp: src/%.hpp ./inc
 	@ln -f $< $@
@@ -31,7 +31,7 @@ lib/libStat.a: ./lib $(OBJECTS)
 	@echo "lib folder created..."
 obj/%.o: src/%.cpp
 	@mkdir -p obj
-	@g++ -pthread -std=c++14 -c $< -o $@ 
+	@g++ -std=c++14 -c $< -o $@ 
 
 obj/%.dep: src/%.cpp
 	@mkdir -p obj
@@ -40,7 +40,7 @@ obj/%.dep: src/%.cpp
 
 .PHONY: clean
 clean:
-	@rm -rf bin/ lib/ obj/ inc/ filename.txt
+	@rm -rf bin/ lib/ obj/ inc/
 	@rm -rf doc/docbook/ doc/html/ doc/latex/
 	@echo "Cleaning..."
 
