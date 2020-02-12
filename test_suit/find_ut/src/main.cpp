@@ -1,21 +1,20 @@
-
 #include <iostream>
 #include <fstream>
 #include <cstring>
 #include <cstdlib>
 #include <string>
 
-char* file_name = "A.txt";
+const char* file_name = "A.txt";
 std::ifstream m_file;
 m_file.open(file_name);
 
-char* word = "test"; 
+const char* word = "test"; 
 
 int count = 1; 
 std::ofstream out_file("output.txt");
 
 
-void* find(void* ptr_word);
+int find(const char* word);
 
 int interactive_testing(int argc, char **argv)
 {
@@ -46,10 +45,10 @@ int interactive_testing(int argc, char **argv)
 
 }
 
-int find_test(int count, void* ptr_word)
+int find_test(int count, const char* word)
 {
-	int* found_count = static_cast<int*> find(ptr_word);
-	if (count == *found_count) {
+	int found_count = find(word);
+	if (count == found_count) {
 		out_file << word << ' ' << count << std::endl;
 		//std::clog << "test succesfully passed!\n";
 	} else {
@@ -59,11 +58,10 @@ int find_test(int count, void* ptr_word)
 	return 0;
 }
 
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
-
-	interactive_testing();
-	find_test(count, (void*)word);
-
+	pthread_t thread1;
+	interactive_testing(argc, argv);
+	find_test(count, word);
 	return 0;
 }

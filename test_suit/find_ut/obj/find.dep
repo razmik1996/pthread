@@ -1,1 +1,0 @@
-obj/find.dep obj/find.o: src/find.cpp
