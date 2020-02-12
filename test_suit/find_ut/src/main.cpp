@@ -4,14 +4,11 @@
 #include <cstdlib>
 #include <string>
 
+
 const char* file_name = "A.txt";
 std::ifstream m_file;
-m_file.open(file_name);
-
 const char* word = "test"; 
-
 int count = 1; 
-std::ofstream out_file("output.txt");
 
 
 int find(const char* word);
@@ -47,6 +44,8 @@ int interactive_testing(int argc, char **argv)
 
 int find_test(int count, const char* word)
 {
+	m_file.open(file_name);
+	std::ofstream out_file("output.txt");
 	int found_count = find(word);
 	if (count == found_count) {
 		out_file << word << ' ' << count << std::endl;
@@ -60,7 +59,6 @@ int find_test(int count, const char* word)
 
 int main(int argc, char** argv)
 {
-	pthread_t thread1;
 	interactive_testing(argc, argv);
 	find_test(count, word);
 	return 0;
