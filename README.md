@@ -60,4 +60,5 @@ _"make doc"_ command generates doxygen documentation.<br/>
 The documentation is located in the directory doc/.<br/>
 Doxygen generates documentation according to code comments.<br/>
 
-To see the doxyfile documentation, please visit at [documentation](https://github.com/razmik1996/pthread/blob/master/doc/html/index.html).
+To see the doxyfile documentation, enter "make doc" and visit at doc/html/index.html.
+Example: firefox doc/html/index.html
