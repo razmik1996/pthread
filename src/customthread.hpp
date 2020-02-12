@@ -1,4 +1,3 @@
-#include <vector>
 #include <iostream>
 #include <pthread.h>
 #include <fstream>
@@ -11,8 +10,8 @@
 ///@date 12.02.2020
 class CustomThread {
 private:///members
-    std::fstream file;
-    pthread_t thread;
+    std::fstream m_file;
+    std::string m_fileName;
 public:///constructors and destructor
     CustomThread(std::string fileName);
     CustomThread(const CustomThread&);

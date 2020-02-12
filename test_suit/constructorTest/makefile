@@ -34,8 +34,7 @@ obj/%.dep: src/%.cpp
 
 .PHONY: clean
 clean:
-	@rm -rf bin/ lib/ obj/ inc/ filename.txt
-	@rm -rf doc/docbook/ doc/html/ doc/latex/
+	@rm -rf bin/ lib/ obj/ inc/ out/ filename.txt res/testResult.txt
 	@echo "Cleaning..."
 
 .PHONY: push
@@ -50,8 +49,12 @@ help:
 	@echo "type make clean for cleaning"
 	@echo "type make push for fast pushing to repo"
 
-.PHONY: doc
-doc: src/*.hpp
-	@echo "Generating documentation..."
-	@doxygen ./doc/documentation
+.PHONY: test
+test: ./out
+	@./bin/$(PROGNAME) >> out/output.txt
+	@./bin/$(PROGNAME) >> out/output.txt
+	@diff -u out/output.txt res/waited.txt > res/testResult.txt
+	@echo "Succesfully..."
 
+./out:
+	@mkdir -p out
