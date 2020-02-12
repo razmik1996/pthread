@@ -25,8 +25,15 @@ public:///member functions
 	///If there's no file with such name, .....
 	///@param --- is the name of the file in which should be written.
     void* writeFile(void *);
-	///@brief Function to find the specified word in the file.
-	///If there's no such word in a file, .....
-	///@param ---is the word that must be searched in the file.
-    void* find(void *);
+    ///@brief Function to find and count the specified word in the file.
+    ///If there's no such word in a file, it returns 0.
+    ///@param word is the word that must be searched in the file.
+    //void* find(void *);
+    int find(const char* word);
+
+private:
+
+
+    void* find_helper(void* ptr_word);
+    int find_helper_str(std::string word);
 };
