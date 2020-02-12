@@ -7,7 +7,7 @@ D:=$(patsubst src/%.cpp,obj/%.dep,$(S))
 all: $(EXE) $(H) 
 
 $(EXE): $(O)
-	gcc $^ -lstdc++ -o $@
+	gcc $^ -lstdc++ -pthread -o $@
 
 obj/%.o: src/%.cpp
 	gcc -xc++ -c $< -o $@

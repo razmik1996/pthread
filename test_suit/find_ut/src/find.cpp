@@ -5,11 +5,6 @@
 
 extern std::ifstream m_file;
 
-//int find(std::string word)
-//{
-//    return 1;
-//}
-
 
 
 int find_helper(std::string word)
@@ -35,8 +30,8 @@ void* find_helper(void* ptr_word)
         std::string word(ch_word);
 	unsigned int val = find_helper(word);
         unsigned int* found = new unsigned int(val);
-        //return static_cast<void*>(found);
-	pthread_exit(static_cast<void*>(found));
+	return static_cast<void*>(found);
+	//pthread_exit(static_cast<void*>(found));
 }
 
 
