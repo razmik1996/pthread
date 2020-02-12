@@ -1,19 +1,18 @@
+#include <vector>
 #include <iostream>
 #include <pthread.h>
 #include <fstream>
 #include <string>
+#include <stdexcept>
+#include <cassert>
 
 class CustomThread {
 private:///members
     std::fstream m_file;
-    std::string m_fileName;
+    char* m_fileName;
 public:///constructors and destructor
-    CustomThread(std::string fileName);
+    CustomThread(char* fileName);
     CustomThread(const CustomThread&);
     ~CustomThread();
 public:///member functions
-    static void* readFile_wrapper(void*);
-    void* readFile(void);
-    void* writeFile(void *);
-    void* find(void *);
 };

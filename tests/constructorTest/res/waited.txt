@@ -1,0 +1,7 @@
+Constructor called..
+Unable to open file
+New file with name "filename.txt" created
+Destructor called..
+Constructor called..
+File succesfuly opened
+Destructor called..
