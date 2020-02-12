@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include "customthread.hpp"
 
 CustomThread::CustomThread(std::string fileName) :
@@ -16,43 +15,22 @@ CustomThread::CustomThread(std::string fileName) :
      
 CustomThread::CustomThread(const CustomThread& other) {
     m_fileName = other.m_fileName;
-=======
-CustomThread::CustomThread(std::string fileName) {
-
-}
-
-CustomThread::CustomThread(const CustomThread&) {
-
->>>>>>> a5e26074242aedcf3752f87759fabc55d9ceb770
 }
 
 CustomThread::~CustomThread() {
     m_file.close();
 }
 
-<<<<<<< HEAD
-void* CustomThread::readFile(void) {
-}
-
-void* CustomThread::writeFile(void *) {
-=======
 void* CustomThread::readFile(void * filename) {
     char* s = (char*)filename;
-    file.open(s);
-    if(!file.is_open()) {
-        ifstream file(s); 
-    }
+    return 0;
 }
 
 void* CustomThread::writeFile(void * filename)
 {
-	char* s = (char*)filename;
-	for (int i = 0; i < 100; ++i) {
-		file << i << " ";
-	}
->>>>>>> a5e26074242aedcf3752f87759fabc55d9ceb770
+    return 0;
 }
 
 void* CustomThread::find(void * ptrword) {
-
+    return 0;
 }

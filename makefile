@@ -6,12 +6,6 @@ SOURCES := $(patsubst main.cpp, , $(SOURCESWITHMAIN))
 OBJECTS := $(patsubst src/%.cpp, obj/%.o, $(SOURCES))
 DEPENDS := $(patsubst src/%.cpp, obj/%.dep, $(SOURCESWITHMAIN))
 
-all: bin/program doc
-
-doc: src/*.hpp
-	@echo "Generating documentation..."
-	@doxygen ./doc/documentation
-
 bin/program: ./bin lib/libStat.a src/main.cpp $(HEADERS)
 	@g++ -std=c++14 -pthread src/main.cpp -L lib -l Stat -o bin/$(PROGNAME) -I /inc
 	@echo "Succesfully..."
@@ -55,3 +49,9 @@ help:
 	@echo "type make for compiling"
 	@echo "type make clean for cleaning"
 	@echo "type make push for fast pushing to repo"
+
+.PHONY: doc
+doc: src/*.hpp
+	@echo "Generating documentation..."
+	@doxygen ./doc/documentation
+

@@ -17,10 +17,6 @@ public:///constructors and destructor
     CustomThread(const CustomThread&);
     ~CustomThread();
 public:///member functions
-<<<<<<< HEAD
-    static void* readFile_wrapper(void*);
-    void* readFile(void);
-=======
 	///@brief Function to read from file. \n
 	///If there's no file with such name, the file is created.
 	///@param --- is the name of the file.
@@ -28,7 +24,6 @@ public:///member functions
 	///@brief Function to write the integers in range of [0,99] in file.
 	///If there's no file with such name, .....
 	///@param --- is the name of the file in which should be written.
->>>>>>> a5e26074242aedcf3752f87759fabc55d9ceb770
     void* writeFile(void *);
 	///@brief Function to find the specified word in the file.
 	///If there's no such word in a file, .....
