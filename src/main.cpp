@@ -5,9 +5,8 @@ int main() {
     CustomThread pthread(name);
     pthread.writeFile();
     pthread.readFile();
-    pthread.writeFile();
-//    std::cout << pthread.find("Hello") << std::endl;
-    std::cout << "From main" << std::endl;
     pthread.join();
+    //    std::cout << pthread.find("Hello") << std::endl;
+    //  std::cout << "From main" << std::endl;
     return 0;
 }

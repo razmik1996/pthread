@@ -46,7 +46,7 @@ void* CustomThread::readFile()
 
 void* CustomThread::writeFileHelper(void* object) 
 {
-	return ((CustomThread*)object)->writeWrapperFile();
+	return (void *)((CustomThread*)object)->writeWrapperFile();
 
 }
 
@@ -64,13 +64,13 @@ void* CustomThread::writeWrapperFile(void)
 void CustomThread::join(){
     pthread_join(threadWrite, NULL);
     pthread_join(threadRead, NULL);
-    pthread_join(threadFind, NULL);
+    //pthread_join(threadFind, NULL);
 }
 
 void* CustomThread::writeFile()
 {	
 	pthread_create(&threadWrite, NULL, &CustomThread::writeFileHelper, this);
-    pthread_join(threadWrite, NULL);
+   // pthread_join(threadWrite, NULL);
 }
 
 int CustomThread::find_helper_str(std::string word)
