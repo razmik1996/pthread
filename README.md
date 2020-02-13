@@ -27,7 +27,7 @@ The mentioned class have member functions, that have appropriate options,
 plus pthreads creation using help functions, see details below:<br/>
 Read member function displays the content of the file.<br/>
 Write member function add new data into the file.<br/>
-Find member function find the given word in the content of the file.<br/>
+Find member function find the given word in the content of the file. || In progress...<br/>
 Note that the user will be informed by the corresponding notification if an error occurs.<br/>
 The project contains tests as well (test\_suit directory), that allows to check whether the constructor and mentioned functions work correctly.<br/>
 :) to be continue asap ...
@@ -49,7 +49,7 @@ The following third party tools should be installed before the compilation.
 |-----------|---------------|
 | src | contains the source, header files of the project|
 | doc | contains the documentation of the project |
-| test\_suit |  contains constructorTest, find\_ut, unit\_test\_template directories with their makefiles |
+| test\_suit |  contains constructorTest, find\_ut directories with their makefiles |
 | makefile  | top level makefile to build the project |
 |     |_Directories generated after using "make" command_ |
 | bin | contains executable file of the project |
