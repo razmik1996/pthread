@@ -18,20 +18,60 @@ CustomThread::CustomThread(const CustomThread& other) {
 }
 
 CustomThread::~CustomThread() {
+    pthread_join(threadWrite, NULL);
     m_file.close();
 }
 
-void* CustomThread::readFile(void * filename) {
-    char* s = (char*)filename;
-    return 0;
-}
-
-void* CustomThread::writeFile(void * filename)
+void* CustomThread::readFileHelper(void* object)
 {
-    return 0;
+	return ((CustomThread*)object)->readWrapperFile();
 }
 
+void* CustomThread::readWrapperFile(void)
+{	
+	pthread_mutex_lock(&mutex1);
+	m_file.clear();
+	m_file.seekg(0, m_file.beg);
+	std::string line;
+	while(std::getline(m_file, line)) {
+        	std::cout << line << "\n";
+	}
+	pthread_mutex_unlock(&mutex1);
+}
 
+void* CustomThread::readFile()
+{
+	pthread_create(&threadRead, NULL, &CustomThread::readFileHelper, this);
+}
+
+void* CustomThread::writeFileHelper(void* object) 
+{
+	return ((CustomThread*)object)->writeWrapperFile();
+
+}
+
+void* CustomThread::writeWrapperFile(void)
+{
+	pthread_mutex_lock(&mutex1);
+	std::string message;
+	std::getline(std::cin, message);
+    m_file.clear();
+	m_file.seekg(0, m_file.end);
+    m_file << message << std::endl;
+	pthread_mutex_unlock(&mutex1);
+}
+
+void CustomThread::join(){
+    pthread_join(threadWrite, NULL);
+    pthread_join(threadRead, NULL);
+    pthread_join(threadFind, NULL);
+}
+
+void* CustomThread::writeFile()
+{	
+	pthread_create(&threadWrite, NULL, &CustomThread::writeFileHelper, this);
+    pthread_join(threadWrite, NULL);
+}
 
 int CustomThread::find_helper_str(std::string word)
 {
@@ -68,7 +108,7 @@ int CustomThread::find(const char* word)
 
 	typedef void * (*THREADFUNCPTR)(void *);
  
-	pthread_create(&thread, NULL, (THREADFUNCPTR) &CustomThread::find_helper, (void*)word);
-	pthread_join(thread, &ret_val);
+	pthread_create(&threadFind, NULL, (THREADFUNCPTR) &CustomThread::find_helper, (void*)word);
+	pthread_join(threadFind, &ret_val);
 	return *(static_cast<int*>(ret_val));
 }
