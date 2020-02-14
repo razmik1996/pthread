@@ -8,21 +8,21 @@ DEPENDS := $(patsubst src/%.cpp, obj/%.dep, $(SOURCESWITHMAIN))
 
 bin/program: ./bin lib/libStat.a src/main.cpp $(HEADERS)
 	@g++ -std=c++14 -pthread src/main.cpp -L lib -l Stat -o bin/$(PROGNAME) -I /inc
-	@echo "Succesfully compiled..."
+	@echo "Constructor_test compiled..."
 inc/%.hpp: src/%.hpp ./inc
 	@ln -f $< $@
 ./inc:
-	@echo "inc folder created..."
+#	@echo "inc folder created..."
 	@mkdir -p inc
 ./bin:
 	@mkdir -p bin
-	@echo "bin folder created..."
+#	@echo "bin folder created..."
 lib/libStat.a: ./lib $(OBJECTS)
 	@ar rc lib/libStat.a $(OBJECTS)
-	@echo "static lib created..."
+#	@echo "static lib created..."
 ./lib:
 	@mkdir -p lib
-	@echo "lib folder created..."
+#	@echo "lib folder created..."
 obj/%.o: src/%.cpp
 	@mkdir -p obj
 	@g++ -pthread -std=c++14 -c $< -o $@ 
@@ -35,7 +35,7 @@ obj/%.dep: src/%.cpp
 .PHONY: clean
 clean:
 	@rm -rf bin/ lib/ obj/ inc/ out/ filename.txt res/testResult.txt
-	@echo "Cleaning..."
+	@echo "Constructor_test cleaning..."
 
 .PHONY: push
 push:
@@ -54,7 +54,7 @@ test: ./out
 	@./bin/$(PROGNAME) >> out/output.txt
 	@./bin/$(PROGNAME) >> out/output.txt
 	@diff -u out/output.txt res/waited.txt > res/testResult.txt
-	@echo "Succesfully tested..."
+	@echo "Constructor_test passed succesfully..."
 
 ./out:
 	@mkdir -p out
