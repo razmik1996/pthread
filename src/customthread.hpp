@@ -34,12 +34,19 @@ public:///member functions
     ///If there's no such word in a file, it returns 0.
     ///@param word is the word that must be searched in the file.
     //void* find(void *);
-    int find(const char* word);
+    //int find(const char* word);
+    int find(std::string word);
 private:///member functions
     static void* readFileHelper(void *);
     void* readWrapperFile(void);
     static void* writeFileHelper(void *);
     void* writeWrapperFile(void);
-    void* find_helper(void* ptr_word);
+    static void* find_helper(void* ptr_arg);
     int find_helper_str(std::string word);
+};
+
+struct arg_helper {
+	CustomThread* ptr_obj;
+	std::string* ptr_word;
+
 };

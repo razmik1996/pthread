@@ -55,16 +55,16 @@ void* CustomThread::writeWrapperFile(void)
 	pthread_mutex_lock(&mutex1);
 	std::string message;
 	std::getline(std::cin, message);
-    m_file.clear();
+	m_file.clear();
 	m_file.seekg(0, m_file.end);
-    m_file << message << std::endl;
+	m_file << message << std::endl;
 	pthread_mutex_unlock(&mutex1);
 }
 
 void CustomThread::join(){
     pthread_join(threadWrite, NULL);
     pthread_join(threadRead, NULL);
-    //pthread_join(threadFind, NULL);
+    pthread_join(threadFind, NULL); 
 }
 
 void* CustomThread::writeFile()
@@ -75,6 +75,7 @@ void* CustomThread::writeFile()
 
 int CustomThread::find_helper_str(std::string word)
 {
+	//pthread_mutex_lock(&mutex1);
         std::string line;
         unsigned int found = 0;
         while (std::getline(m_file, line)) {
@@ -84,31 +85,35 @@ int CustomThread::find_helper_str(std::string word)
         }
         if (found) {
                 std::cout << word << " is found. (number of occurances is: " 
-			<< std::to_string(found) << std::endl;
+			<< std::to_string(found) << ")" << std::endl;
         }
+	//pthread_mutex_unlock(&mutex1);
         return found;
 }
 
-void* CustomThread::find_helper(void* ptr_word)
+void* CustomThread::find_helper(void* ptr_arg_helper)
 {
-        //std::string* word = static_cast<std::string*>(ptr_word);
-        char* ch_word = static_cast<char*>(ptr_word);
-        std::string word(ch_word);
-	unsigned int val = find_helper_str(word);
+	arg_helper* arg = static_cast<arg_helper*>(ptr_arg_helper);
+	unsigned int val = arg->ptr_obj->find_helper_str(*(arg->ptr_word));
         unsigned int* found = new unsigned int(val);
-        return static_cast<void*>(found);
-	//pthread_exit(static_cast<void*>(found));
+        //return static_cast<void*>(found);
+	pthread_exit(static_cast<void*>(found));
 }
 
 
-int CustomThread::find(const char* word)
+int CustomThread::find(std::string word)
 {
-	pthread_t thread;
+	arg_helper arg;
+	arg.ptr_obj = this;
+	arg.ptr_word = &word;
+	void* ptr_arg = static_cast<void*>(&arg);
+
 	void* ret_val;
 
-	typedef void * (*THREADFUNCPTR)(void *);
+	//typedef void * (*THREADFUNCPTR)(void *);
  
-	pthread_create(&threadFind, NULL, (THREADFUNCPTR) &CustomThread::find_helper, (void*)word);
+	pthread_create(&threadFind, NULL, &CustomThread::find_helper, ptr_arg);
 	pthread_join(threadFind, &ret_val);
 	return *(static_cast<int*>(ret_val));
 }
+
