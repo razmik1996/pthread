@@ -8,7 +8,7 @@ DEPENDS := $(patsubst src/%.cpp, obj/%.dep, $(SOURCESWITHMAIN))
 
 bin/program: ./bin lib/libStat.a src/main.cpp $(HEADERS)
 	@g++ -std=c++14 -pthread src/main.cpp -L lib -l Stat -o bin/$(PROGNAME) -I /inc
-	@echo "Succesfully..."
+	@echo "Succesfully compiled..."
 inc/%.hpp: src/%.hpp ./inc
 	@ln -f $< $@
 ./inc:
@@ -54,7 +54,7 @@ test: ./out
 	@./bin/$(PROGNAME) >> out/output.txt
 	@./bin/$(PROGNAME) >> out/output.txt
 	@diff -u out/output.txt res/waited.txt > res/testResult.txt
-	@echo "Succesfully..."
+	@echo "Succesfully tested..."
 
 ./out:
 	@mkdir -p out

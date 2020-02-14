@@ -1,6 +1,6 @@
 #include "customthread.hpp"
 
-CustomThread::CustomThread(char* fileName) :
+CustomThread::CustomThread(std::string fileName) :
     m_fileName(fileName) 
 {
     std::cout << "Constructor called.." << std::endl;

@@ -41,6 +41,7 @@ void* CustomThread::readWrapperFile(void)
 
 void* CustomThread::readFile()
 {
+    std::cout << "read" << std::endl;
 	pthread_create(&threadRead, NULL, &CustomThread::readFileHelper, this);
 }
 
@@ -69,6 +70,7 @@ void CustomThread::join(){
 
 void* CustomThread::writeFile()
 {	
+    std::cout << "write" << std::endl;
 	pthread_create(&threadWrite, NULL, &CustomThread::writeFileHelper, this);
    // pthread_join(threadWrite, NULL);
 }

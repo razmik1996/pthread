@@ -55,3 +55,6 @@ doc: src/*.hpp
 	@echo "Generating documentation..."
 	@doxygen ./doc/documentation
 
+.PHONY: test
+test:
+	@$(MAKE) -C ./test_suit
