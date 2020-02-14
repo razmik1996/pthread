@@ -29,6 +29,7 @@ void* CustomThread::readFileHelper(void* object)
 
 void* CustomThread::readWrapperFile(void)
 {	
+    pthread_join(threadWrite, NULL);
 	pthread_mutex_lock(&mutex1);
 	m_file.clear();
 	m_file.seekg(0, m_file.beg);
@@ -72,7 +73,6 @@ void* CustomThread::writeFile()
 {	
     std::cout << "write" << std::endl;
 	pthread_create(&threadWrite, NULL, &CustomThread::writeFileHelper, this);
-	// pthread_join(threadWrite, NULL);
 }
 
 int CustomThread::find_helper_str(std::string word)

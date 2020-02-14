@@ -6,6 +6,7 @@ int main() {
     pthread.writeFile();
     pthread.readFile();
     pthread.find("aaa");
+    std::cout << "From main" << std::endl;
     pthread.join();
     return 0;
 }
